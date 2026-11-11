@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Your Examination</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f3f5ff;
+            color: #172554;
+        }
+
+        header {
+            background: #4338ca;
+            color: white;
+            padding: 20px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        header h2 {
+            margin: 0;
+        }
+
+        header p {
+            margin-bottom: 0;
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .logout {
+            background: white;
+            color: #4338ca;
+            border: none;
+            padding: 11px 22px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        .heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .heading h1 {
+            margin-bottom: 10px;
+            color: #172554;
+        }
+
+        .heading p {
+            color: #64748b;
+        }
+
+        .exam-list {
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(270px, 1fr)
+            );
+            gap: 22px;
+        }
+
+        .exam-card {
+            background: white;
+            padding: 24px;
+            border-radius: 14px;
+            border-top: 5px solid #4f46e5;
+            box-shadow: 0 5px 18px #1e1b4b12;
+        }
+
+        .exam-card h3 {
+            color: #4338ca;
+            min-height: 42px;
+        }
+
+        .details {
+            color: #475569;
+            line-height: 1.9;
+            font-size: 14px;
+        }
+
+        .difficulty {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 15px;
+            background: #e0e7ff;
+            color: #3730a3;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        button {
+            font-size: 14px;
+        }
+
+        .start-btn, .instruction-btn {
+            width: 100%;
+            padding: 11px;
+            margin-top: 10px;
+            border-radius: 7px;
+            cursor: pointer;
+        }
+
+        .start-btn {
+            background: #4338ca;
+            color: white;
+            border: none;
+        }
+
+        .instruction-btn {
+            background: white;
+            color: #4338ca;
+            border: 1px solid #4338ca;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        footer {
+            text-align: center;
+            color: #64748b;
+            padding: 25px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div>
+        <h2>🎓 Online Exam Simulator</h2>
+        <p>TEST · LEARN · GROW</p>
+    </div>
+    <button class="logout" onclick="logout()">Logout</button>
+</header>
+
+<div class="container">
+
+    <div class="heading">
+        <h1>Select Your Examination</h1>
+        <p>Choose an exam and test your knowledge</p>
+    </div>
+
+    <div class="exam-list" id="examList"></div>
+
+</div>
+
+<footer>
+    Online Exam Simulator | Learn. Practice. Succeed.
+</footer>
+
+<script>
+    var exams = [
+        {
+            name: "Java Programming",
+            questions: 20,
+            duration: 30,
+            marks: 20,
+            difficulty: "Medium"
+        },
+        {
+            name: "Data Structures and Algorithms",
+            questions: 25,
+            duration: 40,
+            marks: 25,
+            difficulty: "Hard"
+        },
+        {
+            name: "Operating Systems",
+            questions: 20,
+            duration: 30,
+            marks: 20,
+            difficulty: "Medium"
+        },
+        {
+            name: "Computer Networks",
+            questions: 20,
+            duration: 30,
+            marks: 20,
+            difficulty: "Medium"
+        },
+        {
+            name: "Database Management Systems",
+            questions: 25,
+            duration: 35,
+            marks: 25,
+            difficulty: "Easy"
+        }
+    ];
+
+    var examList = document.getElementById("examList");
+
+    for (var i = 0; i < exams.length; i++) {
+        var exam = exams[i];
+
+        examList.innerHTML +=
+            '<div class="exam-card">' +
+            '<h3>' + exam.name + '</h3>' +
+            '<div class="details">' +
+            '<p>Total Questions: ' + exam.questions + '</p>' +
+            '<p>Duration: ' + exam.duration + ' minutes</p>' +
+            '<p>Total Marks: ' + exam.marks + '</p>' +
+            '<p>Difficulty: <span class="difficulty">' +
+            exam.difficulty + '</span></p>' +
+            '</div>' +
+            '<button class="start-btn" onclick="startExam(' +
+            i + ')">Start Exam</button>' +
+            '<button class="instruction-btn" onclick="viewInstructions()">' +
+            'View Instructions</button>' +
+            '</div>';
+    }
+
+    function startExam(index) {
+        alert("Selected Exam: " + exams[index].name +
+              "\nThe exam page will be connected next.");
+    }
+
+    function viewInstructions() {
+        alert(
+            "Exam Instructions\n\n" +
+            "1. Read every question carefully.\n" +
+            "2. Complete the exam within the time limit.\n" +
+            "3. Check your answers before submitting.\n" +
+            "4. Do not refresh the page during the exam."
+        );
+    }
+
+    function logout() {
+        window.location.href = "index.html";
+    }
+</script>
+
+</body>
+</html>
